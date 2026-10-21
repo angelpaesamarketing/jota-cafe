@@ -40,6 +40,8 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
 .header.scrolled{background:#1c0f07ee;backdrop-filter:blur(10px);height:66px}
 .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:19px;letter-spacing:-.03em}
 .brand img{width:46px;height:46px;border-radius:50%;box-shadow:0 0 0 2px #ffe25a40}
+.brand img.brand-3d{width:auto;height:64px;border-radius:0;box-shadow:none;filter:drop-shadow(0 4px 8px #0007);transition:height .35s}
+.header.scrolled .brand img.brand-3d{height:56px}
 .header nav{display:flex;gap:30px;font-size:13px;font-weight:600}
 .header nav a{opacity:.8;transition:opacity .2s}
 .header nav a:hover{opacity:1}
@@ -203,6 +205,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
   html{scroll-padding-top:122px}
   .header,.header.scrolled{height:62px;padding:0 5%}
   .brand{font-size:17px}.brand img{width:38px;height:38px}
+  .brand img.brand-3d,.header.scrolled .brand img.brand-3d{width:auto;height:48px}
   .motion .showroom{height:310svh}
   .pin{min-height:600px}
   .heading{top:14%}
@@ -252,7 +255,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
 <a class="skip" href="#carta">Saltar a la carta</a>
 
 <header class="header" id="header">
-  <a class="brand" href="#inicio" aria-label="Jota Café, inicio"><img src="img/logo.png" alt="" width="150" height="150">Jota Café</a>
+  <a class="brand" href="#inicio" aria-label="Jota Café, inicio"><img src="img/logo.png" alt="" width="150" height="150"><img class="brand-3d" src="img/logo-3d.webp" alt="" width="900" height="889"></a>
   <nav aria-label="Navegación principal"><a href="#pancakes">Pancakes</a><a href="#cafe">Café</a><a href="#tostadas">Tostadas</a><a href="#visitanos">Visítanos</a></nav>
   <a class="button yellow small" href="#carta">Ver la carta <span aria-hidden="true">↓</span></a>
 </header>
