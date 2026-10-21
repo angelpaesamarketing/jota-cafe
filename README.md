@@ -2,7 +2,8 @@
 
 ```
 public/index.html   la página (hero con los 3 platos girando + carta + visítanos)
-public/img/         pancakes, café, tostada (webp recortados) y logo
+public/img/         pancakes, café, tostada, logo 3D y la escena del encargado
+                    (encargado.webp sin plato + tortitas.webp, para que el plato se pose en la mesa)
 public/_headers     caché de 30 días para las imágenes
 wrangler.jsonc      le dice a Cloudflare que publique solo public/
 ```

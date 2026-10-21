@@ -55,16 +55,16 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
 .pin{position:sticky;top:0;height:100svh;min-height:640px;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 46%,#5a3014 0%,#2b170b 36%,#1c0f07 72%)}
 .pin:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(transparent 62%,#1c0f07dd);z-index:3}
 .glow{position:absolute;width:62vw;height:62vw;max-height:720px;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#ffe25a1c,transparent 62%);pointer-events:none}
-.heading{position:absolute;top:13%;left:0;right:0;text-align:center;z-index:0;will-change:transform}
+.heading{position:absolute;top:11%;left:0;right:0;text-align:center;z-index:0;will-change:transform}
 .heading .eyebrow{color:var(--honey)}
-.heading h1{font-size:clamp(130px,25vw,400px);font-weight:800;line-height:.8;letter-spacing:-.07em;margin:20px 0 0;color:#f4e6cc}
-.heading h1 span{color:var(--yellow)}
+.heading h1{width:min(46vw,62vh,700px);margin:18px auto 0}
+.heading h1 img{width:100%;height:auto;filter:drop-shadow(0 30px 40px #0009)}
 .side{position:absolute;left:2.6%;right:2.6%;top:40%;display:flex;justify-content:space-between;z-index:4;pointer-events:none}
 .side span{writing-mode:vertical-rl;font-size:9px;letter-spacing:.2em;color:#b49a7e}
 .side span:last-child{transform:rotate(180deg)}
-.stage{position:absolute;left:0;right:0;top:21%;height:56%;z-index:2;perspective:1400px;touch-action:pan-y;cursor:grab;user-select:none;outline-offset:-10px}
+.stage{position:absolute;left:0;right:0;top:30%;height:62%;z-index:2;perspective:1400px;touch-action:pan-y;cursor:grab;user-select:none;outline-offset:-10px}
 .stage:active{cursor:grabbing}
-.dish{position:absolute;left:50%;top:50%;width:min(40vw,58vh,620px);aspect-ratio:1;will-change:transform,opacity;transform:translate(-50%,-50%)}
+.dish{position:absolute;left:50%;top:50%;width:min(32vw,44vh,560px);aspect-ratio:1;will-change:transform,opacity;transform:translate(-50%,-50%)}
 .dish img{width:100%;height:100%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 26px 22px #0008)}
 .dish:not(:first-of-type){opacity:0}
 .dish-shadow{position:absolute;width:76%;height:14%;left:12%;bottom:4%;border-radius:50%;background:#000a;filter:blur(22px);pointer-events:none}
@@ -73,10 +73,10 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
 .ring.inner{width:50%;height:66%;left:25%;top:17%;border-color:#f6c06228}
 .details{position:absolute;left:5%;right:5%;bottom:104px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;z-index:7;pointer-events:none}
 .details a{pointer-events:auto}
-.claim{max-width:620px;transition:opacity .25s,transform .25s}
+.claim{max-width:560px;transition:opacity .25s,transform .25s}
 .claim.out{opacity:0;transform:translateY(8px)}
 .claim .eyebrow{color:var(--yellow)}
-.claim h2{font-size:clamp(40px,4.6vw,74px);font-weight:800;line-height:.96;letter-spacing:-.045em;margin:14px 0 0}
+.claim h2{font-size:clamp(36px,3.9vw,62px);font-weight:800;line-height:.96;letter-spacing:-.045em;margin:14px 0 0}
 .claim h2 em{color:var(--yellow);font-weight:600}
 .card{width:290px;transition:opacity .25s}
 .card.out{opacity:0}
@@ -139,18 +139,30 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
 .note{font-size:13px;color:#7d5a3c;margin:22px 0 0}
 
 /* Visítanos */
-.visit{background:var(--brown);color:var(--cream);padding:120px 6%;display:grid;grid-template-columns:1.2fr 1fr;gap:8%;align-items:center;position:relative;overflow:hidden}
-.visit:before{content:'';position:absolute;width:640px;height:640px;right:-320px;top:-200px;border-radius:50%;border:2px solid #ffe25a30}
+.visit{background:var(--brown);color:var(--cream);position:relative}
+.motion .visit{height:280svh}
+.visit-pin{position:sticky;top:0;height:100svh;min-height:620px;overflow:hidden;display:grid;grid-template-columns:minmax(340px,.8fr) 1.2fr;align-items:center;padding-top:70px}
+.visit-pin:before{content:'';position:absolute;width:640px;height:640px;left:-320px;top:-220px;border-radius:50%;border:2px solid #ffe25a30}
+.visit-copy{position:relative;z-index:2;padding-left:14%}
 .visit .eyebrow{color:var(--yellow)}
-.visit h2{font-size:clamp(52px,7vw,104px);font-weight:800;letter-spacing:-.04em;font-variant-ligatures:no-common-ligatures;line-height:.9;margin:22px 0 0}
+.visit h2{font-size:clamp(46px,5.6vw,92px);font-weight:800;letter-spacing:-.04em;line-height:.92;margin:20px 0 34px}
 .visit h2 em{color:var(--yellow)}
-.visit-info{position:relative;display:grid;gap:26px}
-.visit-info dl{margin:0;display:grid;gap:22px}
+.visit-info{display:grid;gap:26px}
+.visit-info dl{margin:0;display:grid;gap:18px}
 .visit-info dt{font-size:10px;letter-spacing:.24em;font-weight:700;color:var(--honey);margin-bottom:6px}
-.visit-info dd{margin:0;font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.3}
+.visit-info dd{margin:0;font-size:20px;font-weight:600;letter-spacing:-.02em;line-height:1.3}
 .visit-info dd a{border-bottom:1.5px solid #ffe25a80}
 .visit-actions{display:flex;flex-wrap:wrap;gap:12px}
-
+.scene{position:relative;height:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%);mask-image:linear-gradient(90deg,transparent,#000 14%)}
+.scene>*{position:absolute;left:0;top:0;width:var(--s,400px);height:var(--s,400px);will-change:transform}
+.scene img{pointer-events:none;user-select:none}
+.scene .floor-shadow{height:calc(var(--s,400px)*.08);width:calc(var(--s,400px)*1.6);border-radius:50%;background:radial-gradient(closest-side,#0006,transparent);will-change:auto}
+.waiter img{width:100%;height:100%}
+.bubble{position:absolute;left:38%;top:-4%;background:var(--cream);color:var(--ink);font-weight:800;font-size:clamp(13px,1.3vw,18px);letter-spacing:-.01em;padding:10px 16px;border-radius:18px 18px 18px 4px;white-space:nowrap;box-shadow:0 10px 24px #0004;opacity:0;transform:translateY(10px) scale(.8);transform-origin:left bottom;transition:opacity .3s,transform .3s cubic-bezier(.3,1.6,.5,1)}
+.served .bubble{opacity:1;transform:none}
+.girl{transition:translate .35s cubic-bezier(.3,1.8,.5,1)}
+.served .girl{translate:0 -2%}
+.still .visit-pin{position:relative}
 .footer{background:var(--espresso);padding:44px 6%;display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:12px;color:#b49a7e}
 .footer .brand{color:var(--cream)}
 .footer nav{display:flex;gap:22px}
@@ -164,13 +176,15 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
 }
 @media(max-width:860px){
   .header nav{display:none}
-  .menu-head,.visit,.feature{grid-template-columns:1fr}
+  .menu-head,.feature{grid-template-columns:1fr}
   .menu-head{gap:22px}
   .items{grid-template-columns:1fr}
   .feature figure{max-width:420px;width:80%;margin:0 auto}
   .block-head{flex-direction:column;align-items:flex-start;gap:10px}
   .block-head p{text-align:left}
-  .visit{gap:50px}
+  .visit-pin{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:start;padding-top:96px}
+  .visit-copy{padding:0 6%}
+  .visit h2{margin-bottom:22px}
 }
 @media(max-width:760px){
   html{scroll-padding-top:122px}
@@ -180,7 +194,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
   .pin{min-height:600px}
   .heading{top:14%}
   .heading .eyebrow{font-size:8px;letter-spacing:.2em}
-  .heading h1{font-size:33vw;margin-top:16px}
+  .heading h1{width:min(86vw,46vh);margin-top:14px}
   .stage{top:23%;height:46%;perspective:800px}
   .dish{width:min(80vw,46vh)}
   .floor{top:40%;height:58%;width:160%;left:-30%}
@@ -198,11 +212,17 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
   .tabs{top:62px;padding:10px 5%}
   .block{padding:64px 5% 0}
   .flavours{grid-template-columns:1fr}
-  .visit{padding:90px 6%}
+  .visit-pin{padding-top:80px;min-height:640px}
+  .scene{-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%);mask-image:linear-gradient(90deg,transparent,#000 6%)}
+  .visit h2{font-size:clamp(36px,10vw,48px);margin:12px 0 16px}
+  .visit-info{gap:16px}
+  .visit-info dl{grid-template-columns:auto auto;justify-content:start;gap:28px}
+  .visit-info dd{font-size:15px}
+  .visit-actions .button{padding:11px 16px;font-size:12px}
   .footer{flex-direction:column;align-items:flex-start}
 }
 @media(max-height:700px) and (min-width:761px){
-  .heading{top:12%}.heading h1{font-size:20vw}
+  .heading{top:11%}.heading h1{width:min(40vw,62vh)}
   .claim h2{font-size:42px}.card p{display:none}
 }
 @media(prefers-reduced-motion:reduce){
@@ -228,7 +248,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
 <section class="showroom" id="inicio" aria-label="Lo mejor de Jota Café">
   <div class="pin">
     <div class="glow" aria-hidden="true"></div>
-    <div class="heading"><p class="eyebrow">Café &amp; Brunch · Paseo Gran Vía 33 · Zaragoza</p><h1>JOTA<span>.</span></h1></div>
+    <div class="heading"><p class="eyebrow">Café &amp; Brunch · Paseo Gran Vía 33 · Zaragoza</p><h1><img src="img/logo-3d.webp" alt="Jota Café" width="900" height="889" fetchpriority="high"></h1></div>
     <div class="side" aria-hidden="true"><span>RECIÉN HECHOS, CADA MAÑANA</span><span>41°38′ N / 0°53′ O · ZARAGOZA</span></div>
 
     <div class="stage" id="stage" tabindex="0" aria-label="Ruleta de platos. Usa el scroll, las flechas o los botones para elegir.">
@@ -359,18 +379,26 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
 </section>
 
 <section class="visit" id="visitanos" aria-labelledby="visit-titulo">
-  <div class="reveal">
-    <p class="eyebrow">Visítanos</p>
-    <h2 id="visit-titulo">Tu soufflé te <em>está esperando.</em></h2>
-  </div>
-  <div class="visit-info reveal">
-    <dl>
-      <div><dt>DIRECCIÓN</dt><dd>Paseo Gran Vía 33<br>Zaragoza</dd></div>
-      <div><dt>INSTAGRAM</dt><dd><a href="https://www.instagram.com/jotacafe.zgz/" target="_blank" rel="noopener">@jotacafe.zgz</a></dd></div>
-    </dl>
-    <div class="visit-actions">
-      <a class="button yellow" href="https://www.google.com/maps/search/?api=1&amp;query=JOTA%20CAFE%20Paseo%20Gran%20V%C3%ADa%2033%20Zaragoza" target="_blank" rel="noopener">Cómo llegar y horario <span aria-hidden="true">↗</span></a>
-      <a class="button ghost" href="https://linktr.ee/jotacafe.zaragoza" target="_blank" rel="noopener">Todos los enlaces <span aria-hidden="true">↗</span></a>
+  <div class="visit-pin">
+    <div class="visit-copy">
+      <p class="eyebrow">Visítanos</p>
+      <h2 id="visit-titulo">Tu desayuno te <em>está esperando.</em></h2>
+      <div class="visit-info">
+        <dl>
+          <div><dt>DIRECCIÓN</dt><dd>Paseo Gran Vía 33<br>Zaragoza</dd></div>
+          <div><dt>INSTAGRAM</dt><dd><a href="https://www.instagram.com/jotacafe.zgz/" target="_blank" rel="noopener">@jotacafe.zgz</a></dd></div>
+        </dl>
+        <div class="visit-actions">
+          <a class="button yellow" href="https://www.google.com/maps/search/?api=1&amp;query=JOTA%20CAFE%20Paseo%20Gran%20V%C3%ADa%2033%20Zaragoza" target="_blank" rel="noopener">Cómo llegar y horario <span aria-hidden="true">↗</span></a>
+          <a class="button ghost" href="https://linktr.ee/jotacafe.zaragoza" target="_blank" rel="noopener">Todos los enlaces <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="scene" id="scene" aria-hidden="true">
+      <div class="floor-shadow"></div>
+      <img class="girl" src="img/clienta.webp" alt="" width="900" height="900" loading="lazy">
+      <div class="waiter"><img src="img/encargado.webp" alt="" width="900" height="900" loading="lazy"><span class="bubble">¡Que aproveche!</span></div>
+      <img class="plate" src="img/tortitas.webp" alt="" width="900" height="900" loading="lazy">
     </div>
   </div>
 </section>
@@ -410,7 +438,7 @@ let current=0,phase=0,target=0,frame=0,lastT=0,startY=0,range=1,swapTimer=0;
 let pointer=null,dragging=false,dragPhase=0,dragDx=0;
 const still=()=>reduced.matches;
 
-function setMode(){document.body.classList.toggle('motion',!still());document.body.classList.toggle('still',still());measure();if(still()){phase=target=current;render();}else readScroll();}
+function setMode(){document.body.classList.toggle('motion',!still());document.body.classList.toggle('still',still());measure();if(typeof renderScene==='function')renderScene();if(still()){phase=target=current;render();}else readScroll();}
 reduced.addEventListener('change',setMode);
 function measure(){startY=showroom.getBoundingClientRect().top+scrollY;range=Math.max(0,showroom.offsetHeight-pin.offsetHeight);}
 
@@ -449,11 +477,43 @@ stage.addEventListener('pointermove',e=>{if(!pointer)return;const dx=e.clientX-p
 function stopDrag(){if(dragging){dragging=false;select(Math.abs(dragDx)>45?clamp(Math.round(dragPhase)+(dragDx<0?1:-1),0,last):Math.round(target));}pointer=null;}
 stage.addEventListener('pointerup',stopDrag);stage.addEventListener('pointercancel',()=>{dragging=false;pointer=null;readScroll();});
 
+
+// Visítanos: el encargado cruza con las tortitas y se las deja en la mesa a la clienta.
+// Medidas en píxeles de las ilustraciones originales (1254 px de lado).
+const visit=document.querySelector('.visit'),visitPin=document.querySelector('.visit-pin'),scene=document.querySelector('#scene');
+const girlEl=scene.querySelector('.girl'),waiterEl=scene.querySelector('.waiter'),plateEl=scene.querySelector('.plate'),floorEl=scene.querySelector('.floor-shadow');
+const ART=1254,lerp=(a,b,t)=>a+(b-a)*t,ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2,seg=(p,a,b)=>clamp((p-a)/(b-a),0,1);
+let sceneFrame=0;
+function renderScene(){
+  sceneFrame=0;
+  const W=scene.clientWidth,H=scene.clientHeight,narrow=W<700,s=Math.min(H*.9,W*ART/(narrow?1680:1840)),k=s/ART;
+  scene.style.setProperty('--s',s+'px');
+  const top=H*.97-s,girlX=narrow?W-1215*k:(W-659*k)/2+W*.04;
+  let p=1;
+  if(!still()){const r=visit.getBoundingClientRect(),run=visit.offsetHeight-visitPin.offsetHeight+innerHeight*.6;p=clamp((innerHeight*.6-r.top)/run,0,1);}
+  // 1) camina hasta la mesa  2) deja el plato  3) da un paso atrás
+  const walk=ease(seg(p,0,.6)),place=ease(seg(p,.62,.8)),back=ease(seg(p,.84,.96));
+  const startX=-1180*k,stopX=girlX-800*k;
+  let wx=lerp(startX,stopX,walk)-(narrow?30:70)*k*back;
+  const stepping=(walk>0&&walk<1)||(back>0&&back<1);
+  const steps=(wx-startX)/(150*k);
+  const bob=stepping?-Math.abs(Math.sin(steps*Math.PI))*16*k:0,tilt=stepping?Math.sin(steps*Math.PI)*1.6:0;
+  waiterEl.style.transform=`translate(${wx.toFixed(1)}px,${(top+bob).toFixed(1)}px) rotate(${tilt.toFixed(2)}deg)`;
+  // El plato va en la mano hasta que se posa en la mesa (arco suave)
+  const handX=lerp(startX,stopX,walk),tableX=girlX-650*k;
+  const px=lerp(handX,tableX,place),py=top+(place>0?lerp(0,8*k,place)-Math.sin(place*Math.PI)*60*k:bob);
+  plateEl.style.transform=`translate(${px.toFixed(1)}px,${py.toFixed(1)}px)`;
+  girlEl.style.transform=`translate(${girlX.toFixed(1)}px,${top.toFixed(1)}px)`;
+  floorEl.style.transform=`translate(${(girlX-760*k).toFixed(1)}px,${(top+s*.93).toFixed(1)}px)`;
+  scene.classList.toggle('served',p>.86);
+}
+const queueScene=()=>{if(!sceneFrame)sceneFrame=requestAnimationFrame(renderScene)};
+
 let ticking=false;
-addEventListener('scroll',()=>{readScroll();if(!ticking){ticking=true;requestAnimationFrame(()=>{updateTabs();ticking=false;});}},{passive:true});
-addEventListener('resize',()=>{measure();readScroll();render();});
-addEventListener('load',()=>{measure();readScroll();});
-setMode();render();updateTabs();
+addEventListener('scroll',()=>{readScroll();queueScene();if(!ticking){ticking=true;requestAnimationFrame(()=>{updateTabs();ticking=false;});}},{passive:true});
+addEventListener('resize',()=>{measure();readScroll();render();queueScene();});
+addEventListener('load',()=>{measure();readScroll();renderScene();});
+setMode();render();updateTabs();renderScene();
 </script>
 </body>
 </html>
