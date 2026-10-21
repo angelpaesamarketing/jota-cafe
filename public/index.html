@@ -105,7 +105,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* Carta */
-.menu{background:var(--cream);color:var(--ink);padding:110px 0 120px}
+.menu{background:var(--cream);color:var(--ink);padding:110px 0 calc(120px + clamp(120px,21vh,200px))}
 .menu-head{padding:0 6%;display:grid;grid-template-columns:1.2fr 1fr;gap:6%;align-items:end;margin-bottom:46px}
 .menu-head .eyebrow{color:var(--brown);grid-column:1/-1;margin-bottom:18px}
 .menu-head h2{font-size:clamp(64px,10vw,150px);font-weight:800;letter-spacing:-.06em;line-height:.85;margin:0}
@@ -154,14 +154,27 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
 .visit-info dd a{border-bottom:1.5px solid #ffe25a80}
 .visit-actions{display:flex;flex-wrap:wrap;gap:12px}
 .scene{position:relative;height:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%);mask-image:linear-gradient(90deg,transparent,#000 14%)}
-.scene>*{position:absolute;left:0;top:0;width:var(--s,400px);height:var(--s,400px);will-change:transform}
-.scene img{pointer-events:none;user-select:none}
-.scene .floor-shadow{height:calc(var(--s,400px)*.08);width:calc(var(--s,400px)*1.6);border-radius:50%;background:radial-gradient(closest-side,#0006,transparent);will-change:auto}
-.waiter img{width:100%;height:100%}
-.bubble{position:absolute;left:38%;top:-4%;background:var(--cream);color:var(--ink);font-weight:800;font-size:clamp(13px,1.3vw,18px);letter-spacing:-.01em;padding:10px 16px;border-radius:18px 18px 18px 4px;white-space:nowrap;box-shadow:0 10px 24px #0004;opacity:0;transform:translateY(10px) scale(.8);transform-origin:left bottom;transition:opacity .3s,transform .3s cubic-bezier(.3,1.6,.5,1)}
+.scene>*{position:absolute;left:0;top:0;will-change:transform}
+.scene img{pointer-events:none;user-select:none;display:block}
+.ch{width:var(--s);height:var(--s)}
+.ch img{position:absolute;inset:0;width:100%;height:100%}
+.ch .alt{opacity:0}
+.plate{width:calc(var(--s)*.2927);height:auto;filter:drop-shadow(0 4px 4px #0003)}
+.shadow{border-radius:50%;background:radial-gradient(closest-side,#0007,transparent)}
+.bubble{position:absolute;left:40%;top:-5%;background:var(--cream);color:var(--ink);font-weight:800;font-size:clamp(11px,calc(var(--s)*.032),18px);letter-spacing:-.01em;padding:.6em 1em;border-radius:1.2em 1.2em 1.2em .3em;white-space:nowrap;box-shadow:0 10px 24px #0004;opacity:0;transform:translateY(10px) scale(.8);transform-origin:left bottom;transition:opacity .3s,transform .35s cubic-bezier(.3,1.6,.5,1)}
 .served .bubble{opacity:1;transform:none}
-.girl{transition:translate .35s cubic-bezier(.3,1.8,.5,1)}
-.served .girl{translate:0 -2%}
+.hearts{position:absolute;left:44%;top:-9%;width:26%;height:20%}
+.hearts i{position:absolute;bottom:0;left:5%;font-style:normal;color:#ff5d6c;font-size:calc(var(--s)*.07);opacity:0;text-shadow:0 2px 6px #0003}
+.hearts i:nth-child(2){left:42%;animation-delay:.7s!important}
+.hearts i:nth-child(3){left:80%;animation-delay:1.4s!important}
+.served .hearts i{animation:heart 2.1s ease-out infinite}
+@keyframes heart{0%{opacity:0;transform:translateY(0) scale(.5)}20%{opacity:1}100%{opacity:0;transform:translateY(calc(var(--s)*-.16)) scale(1.15)}}
+/* Tira fija abajo: acompaña toda la carta */
+.strip{position:fixed;left:0;right:0;bottom:0;height:clamp(120px,21vh,200px);z-index:30;pointer-events:none;opacity:0;visibility:hidden}
+.strip:before{content:'';position:absolute;left:0;right:0;top:-35%;bottom:0;background:linear-gradient(#fbf3e200,#fbf3e2f0 58%)}
+.strip:after{content:'';position:absolute;left:0;right:0;bottom:3px;height:1px;background:#6c2d0222}
+.strip .scene{-webkit-mask-image:none;mask-image:none}
+.still .strip{display:none}
 .still .visit-pin{position:relative}
 .footer{background:var(--espresso);padding:44px 6%;display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:12px;color:#b49a7e}
 .footer .brand{color:var(--cream)}
@@ -208,7 +221,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
   .choices{width:100%;justify-content:space-between}
   .choice{padding:12px 6px;gap:6px}
   .arrow{display:none}
-  .menu{padding:80px 0 90px}
+  .menu{padding:80px 0 calc(70px + clamp(120px,21vh,200px))}
   .tabs{top:62px;padding:10px 5%}
   .block{padding:64px 5% 0}
   .flavours{grid-template-columns:1fr}
@@ -394,14 +407,10 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
         </div>
       </div>
     </div>
-    <div class="scene" id="scene" aria-hidden="true">
-      <div class="floor-shadow"></div>
-      <img class="girl" src="img/clienta.webp" alt="" width="900" height="900" loading="lazy">
-      <div class="waiter"><img src="img/encargado.webp" alt="" width="900" height="900" loading="lazy"><span class="bubble">¡Que aproveche!</span></div>
-      <img class="plate" src="img/tortitas.webp" alt="" width="900" height="900" loading="lazy">
-    </div>
+    <div class="scene" id="scene" aria-hidden="true"></div>
   </div>
 </section>
+<div class="strip" id="strip" aria-hidden="true"><div class="scene"></div></div>
 </main>
 
 <footer class="footer">
@@ -438,7 +447,7 @@ let current=0,phase=0,target=0,frame=0,lastT=0,startY=0,range=1,swapTimer=0;
 let pointer=null,dragging=false,dragPhase=0,dragDx=0;
 const still=()=>reduced.matches;
 
-function setMode(){document.body.classList.toggle('motion',!still());document.body.classList.toggle('still',still());measure();if(typeof renderScene==='function')renderScene();if(still()){phase=target=current;render();}else readScroll();}
+function setMode(){document.body.classList.toggle('motion',!still());document.body.classList.toggle('still',still());measure();if(typeof renderScene==='function'){measureStrip();renderScene();}if(still()){phase=target=current;render();}else readScroll();}
 reduced.addEventListener('change',setMode);
 function measure(){startY=showroom.getBoundingClientRect().top+scrollY;range=Math.max(0,showroom.offsetHeight-pin.offsetHeight);}
 
@@ -478,42 +487,73 @@ function stopDrag(){if(dragging){dragging=false;select(Math.abs(dragDx)>45?clamp
 stage.addEventListener('pointerup',stopDrag);stage.addEventListener('pointercancel',()=>{dragging=false;pointer=null;readScroll();});
 
 
-// Visítanos: el encargado cruza con las tortitas y se las deja en la mesa a la clienta.
+// El encargado cruza con las tortitas, las deja en la mesa y la clienta se emociona.
+// Se usa dos veces: en una tira fija abajo mientras recorres la carta y en grande en Visítanos.
 // Medidas en píxeles de las ilustraciones originales (1254 px de lado).
-const visit=document.querySelector('.visit'),visitPin=document.querySelector('.visit-pin'),scene=document.querySelector('#scene');
-const girlEl=scene.querySelector('.girl'),waiterEl=scene.querySelector('.waiter'),plateEl=scene.querySelector('.plate'),floorEl=scene.querySelector('.floor-shadow');
 const ART=1254,lerp=(a,b,t)=>a+(b-a)*t,ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2,seg=(p,a,b)=>clamp((p-a)/(b-a),0,1);
+const SCENE_HTML=`<div class="shadow sw"></div><div class="shadow sg"></div>
+<div class="ch girl"><img src="img/clienta.webp" alt="" width="900" height="900"><img class="alt" src="img/clienta-feliz.webp" alt="" width="900" height="900"><span class="hearts"><i>♥</i><i>♥</i><i>♥</i></span></div>
+<div class="ch waiter"><img src="img/encargado.webp" alt="" width="900" height="900"><img class="alt" src="img/encargado-presenta.webp" alt="" width="900" height="900"><span class="bubble">¡Que aproveche!</span></div>
+<img class="plate" src="img/tortitas.webp" alt="" width="640" height="297">`;
+function createScene(root,layout){
+  root.innerHTML=SCENE_HTML;
+  const q=c=>root.querySelector(c),girl=q('.girl'),waiter=q('.waiter'),plate=q('.plate'),sw=q('.sw'),sg=q('.sg');
+  const girlAlt=girl.querySelector('.alt'),girlBase=girl.querySelector('img'),waiterAlt=waiter.querySelector('.alt'),waiterBase=waiter.querySelector('img');
+  let p=0,target=0,frame=0,last=0;
+  const T=(x,y,r=0)=>`translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`+(r?` rotate(${r.toFixed(2)}deg)`:'');
+  function draw(){
+    const {s,top,girlX,back}=layout(root.clientWidth,root.clientHeight),k=s/ART;
+    root.style.setProperty('--s',s+'px');
+    // 1) camina con el plato  2) lo posa en la mesa  3) cambia de pose y da un paso atrás
+    const walk=ease(seg(p,0,.7)),place=ease(seg(p,.72,.84)),swap=seg(p,.84,.9),step=ease(seg(p,.84,.95));
+    const startX=-1180*k,stopX=girlX-800*k,wx=lerp(startX,stopX,walk)-back*k*step;
+    const moving=(walk>0&&walk<1)||(step>0&&step<1),phase=(wx-startX)/(170*k)*Math.PI;
+    const bob=moving?-Math.abs(Math.sin(phase))*14*k:0,lean=moving?(walk<1?2.2:-1.5)+Math.sin(phase)*1.2:0;
+    waiter.style.transform=T(wx,top+bob,lean);
+    waiterAlt.style.opacity=swap;waiterBase.style.opacity=1-swap;
+    // Plato: en la mano con un leve vaivén; después un arco hasta la mesa (donde está en la ilustración de la clienta)
+    const pw=367*k,ph=pw*297/640;
+    const handCx=lerp(startX,stopX,walk)+990*k,handB=top+806*k+bob+(moving?Math.sin(phase*2)*2*k:0);
+    const tableCx=girlX+488*k,tableB=top+820*k;
+    const cx=lerp(handCx,tableCx,place),b=lerp(handB,tableB,place)-Math.sin(place*Math.PI)*70*k;
+    plate.style.transform=T(cx-pw/2,b-ph,place>0&&place<1?Math.sin(place*Math.PI)*-4:(moving?Math.sin(phase)*1.5:0));
+    plate.style.opacity=1-swap;
+    girl.style.transform=T(girlX,top-(swap>0&&swap<1?Math.sin(swap*Math.PI)*12*k:0));
+    girlAlt.style.opacity=swap;girlBase.style.opacity=1-swap;
+    // Sombras en el suelo
+    const lift=moving?Math.abs(Math.sin(phase)):0;
+    sw.style.width=(520*k*(1-lift*.12))+'px';sw.style.height=(56*k)+'px';sw.style.transform=T(wx+640*k-260*k*(1-lift*.12),top+1200*k);
+    sg.style.width=(1040*k)+'px';sg.style.height=(60*k)+'px';sg.style.transform=T(girlX+120*k,top+1195*k);
+    root.classList.toggle('served',p>.9);
+  }
+  function tick(t){const dt=Math.min(50,t-(last||t));last=t;const d=target-p;if(Math.abs(d)<.0005){p=target;draw();frame=0;last=0;return;}p+=d*(1-Math.exp(-Math.max(dt,16)/120));draw();frame=requestAnimationFrame(tick);}
+  return {set(v,instant){target=v;if(instant){p=v;draw();return;}if(!frame)frame=requestAnimationFrame(tick);},draw};
+}
+const visit=document.querySelector('.visit'),visitPin=document.querySelector('.visit-pin');
+const visitScene=createScene(document.querySelector('#scene'),(W,H)=>{const narrow=W<700,s=Math.min(H*.9,W*ART/(narrow?1680:1840)),k=s/ART;return {s,top:H*.97-s,girlX:narrow?W-1215*k:(W-659*k)/2+W*.04,back:narrow?30:70};});
+const strip=document.querySelector('#strip'),menuEl=document.querySelector('#carta');
+const stripScene=createScene(strip.querySelector('.scene'),(W,H)=>{const s=H,k=s/ART;return {s,top:0,girlX:W-1230*k-Math.min(W*.03,40),back:60};});
+let stripStart=0,stripEnd=1;
+function measureStrip(){const y=scrollY;stripStart=showroom.getBoundingClientRect().bottom+y-innerHeight;stripEnd=menuEl.getBoundingClientRect().bottom+y-innerHeight;}
 let sceneFrame=0;
 function renderScene(){
   sceneFrame=0;
-  const W=scene.clientWidth,H=scene.clientHeight,narrow=W<700,s=Math.min(H*.9,W*ART/(narrow?1680:1840)),k=s/ART;
-  scene.style.setProperty('--s',s+'px');
-  const top=H*.97-s,girlX=narrow?W-1215*k:(W-659*k)/2+W*.04;
-  let p=1;
-  if(!still()){const r=visit.getBoundingClientRect(),run=visit.offsetHeight-visitPin.offsetHeight+innerHeight*.6;p=clamp((innerHeight*.6-r.top)/run,0,1);}
-  // 1) camina hasta la mesa  2) deja el plato  3) da un paso atrás
-  const walk=ease(seg(p,0,.6)),place=ease(seg(p,.62,.8)),back=ease(seg(p,.84,.96));
-  const startX=-1180*k,stopX=girlX-800*k;
-  let wx=lerp(startX,stopX,walk)-(narrow?30:70)*k*back;
-  const stepping=(walk>0&&walk<1)||(back>0&&back<1);
-  const steps=(wx-startX)/(150*k);
-  const bob=stepping?-Math.abs(Math.sin(steps*Math.PI))*16*k:0,tilt=stepping?Math.sin(steps*Math.PI)*1.6:0;
-  waiterEl.style.transform=`translate(${wx.toFixed(1)}px,${(top+bob).toFixed(1)}px) rotate(${tilt.toFixed(2)}deg)`;
-  // El plato va en la mano hasta que se posa en la mesa (arco suave)
-  const handX=lerp(startX,stopX,walk),tableX=girlX-650*k;
-  const px=lerp(handX,tableX,place),py=top+(place>0?lerp(0,8*k,place)-Math.sin(place*Math.PI)*60*k:bob);
-  plateEl.style.transform=`translate(${px.toFixed(1)}px,${py.toFixed(1)}px)`;
-  girlEl.style.transform=`translate(${girlX.toFixed(1)}px,${top.toFixed(1)}px)`;
-  floorEl.style.transform=`translate(${(girlX-760*k).toFixed(1)}px,${(top+s*.93).toFixed(1)}px)`;
-  scene.classList.toggle('served',p>.86);
+  if(still()){visitScene.set(1,true);return;}
+  const r=visit.getBoundingClientRect(),run=visit.offsetHeight-visitPin.offsetHeight+innerHeight*.6;
+  visitScene.set(clamp((innerHeight*.6-r.top)/run,0,1));
+  // La tira aparece al terminar el hero de productos y entrega el plato justo al final de la carta
+  const y=scrollY,ih=innerHeight,op=seg(y,stripStart-ih*.12,stripStart+ih*.04)*(1-seg(y,stripEnd+ih*.06,stripEnd+ih*.35));
+  strip.style.opacity=op.toFixed(3);strip.style.visibility=op>0?'visible':'hidden';
+  if(op>0)stripScene.set(clamp((y-stripStart)/(stripEnd-stripStart),0,1));
 }
 const queueScene=()=>{if(!sceneFrame)sceneFrame=requestAnimationFrame(renderScene)};
 
 let ticking=false;
 addEventListener('scroll',()=>{readScroll();queueScene();if(!ticking){ticking=true;requestAnimationFrame(()=>{updateTabs();ticking=false;});}},{passive:true});
-addEventListener('resize',()=>{measure();readScroll();render();queueScene();});
-addEventListener('load',()=>{measure();readScroll();renderScene();});
-setMode();render();updateTabs();renderScene();
+addEventListener('resize',()=>{measure();measureStrip();readScroll();render();visitScene.draw();stripScene.draw();queueScene();});
+addEventListener('load',()=>{measure();measureStrip();readScroll();renderScene();});
+measureStrip();setMode();render();updateTabs();renderScene();
+if(document.fonts)document.fonts.ready.then(()=>{measureStrip();queueScene();});
 </script>
 </body>
 </html>
