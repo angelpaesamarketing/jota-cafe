@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Jota Café | Pancakes soufflé, café de especialidad y brunch en Zaragoza</title>
+<meta name="description" content="Carta digital de Jota Café, en Paseo Gran Vía 33 (Zaragoza): pancakes soufflé recién hechos, café de especialidad, matcha y tostadas.">
+<meta name="theme-color" content="#1c0f07">
+<meta property="og:title" content="Jota Café · Café & Brunch Zaragoza">
+<meta property="og:description" content="Los pancakes más virales de Zaragoza, café de especialidad y tostadas. Mira la carta.">
+<meta property="og:image" content="img/pancakes.webp">
+<link rel="icon" href="img/logo.png">
+<link rel="preload" as="image" href="img/pancakes.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"Jota Café","description":"Café & brunch en Zaragoza: pancakes soufflé, café de especialidad, matcha y tostadas.","address":{"@type":"PostalAddress","streetAddress":"Paseo Gran Vía 33","addressLocality":"Zaragoza","addressCountry":"ES"},"servesCuisine":["Brunch","Café de especialidad","Pancakes"],"hasMenu":"#carta","sameAs":["https://www.instagram.com/jotacafe.zgz/","https://linktr.ee/jotacafe.zaragoza"]}
+</script>
+<style>
+:root{
+  --espresso:#1c0f07;--roast:#2b170b;--brown:#6c2d02;--yellow:#ffe25a;--honey:#f6c062;
+  --cream:#fbf3e2;--paper:#f7eedd;--ink:#2a1608;--muted:#c9b39a;--line:#6c2d0226;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;--serif:'Fraunces',Georgia,serif;
+  color-scheme:dark
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:136px}
+body{margin:0;background:var(--espresso);color:var(--cream);font-family:var(--display);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.02em}
+.eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;margin:0}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--yellow);color:var(--ink);padding:10px 14px}
+.skip:focus{left:8px}
+
+/* Cabecera */
+.header{position:fixed;inset:0 0 auto;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;z-index:50;transition:background .35s,height .35s}
+.header.scrolled{background:#1c0f07ee;backdrop-filter:blur(10px);height:66px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:19px;letter-spacing:-.03em}
+.brand img{width:46px;height:46px;border-radius:50%;box-shadow:0 0 0 2px #ffe25a40}
+.header nav{display:flex;gap:30px;font-size:13px;font-weight:600}
+.header nav a{opacity:.8;transition:opacity .2s}
+.header nav a:hover{opacity:1}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:12px;border-radius:999px;padding:13px 22px;font-size:13px;font-weight:700;letter-spacing:.01em;transition:transform .2s,background .2s}
+.button.yellow{background:var(--yellow);color:var(--ink)}
+.button.yellow:hover{background:#fff07f;transform:translateY(-1px)}
+.button.ghost{border:1.5px solid currentColor}
+.button.small{padding:10px 17px;font-size:12px}
+
+/* Hero: la carta gira con el scroll */
+.showroom{position:relative;height:100svh}
+.motion .showroom{height:350svh}
+.pin{position:sticky;top:0;height:100svh;min-height:640px;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 46%,#5a3014 0%,#2b170b 36%,#1c0f07 72%)}
+.pin:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(transparent 62%,#1c0f07dd);z-index:3}
+.glow{position:absolute;width:62vw;height:62vw;max-height:720px;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#ffe25a1c,transparent 62%);pointer-events:none}
+.heading{position:absolute;top:13%;left:0;right:0;text-align:center;z-index:0;will-change:transform}
+.heading .eyebrow{color:var(--honey)}
+.heading h1{font-size:clamp(130px,25vw,400px);font-weight:800;line-height:.8;letter-spacing:-.07em;margin:20px 0 0;color:#f4e6cc}
+.heading h1 span{color:var(--yellow)}
+.side{position:absolute;left:2.6%;right:2.6%;top:40%;display:flex;justify-content:space-between;z-index:4;pointer-events:none}
+.side span{writing-mode:vertical-rl;font-size:9px;letter-spacing:.2em;color:#b49a7e}
+.side span:last-child{transform:rotate(180deg)}
+.stage{position:absolute;left:0;right:0;top:21%;height:56%;z-index:2;perspective:1400px;touch-action:pan-y;cursor:grab;user-select:none;outline-offset:-10px}
+.stage:active{cursor:grabbing}
+.dish{position:absolute;left:50%;top:50%;width:min(40vw,58vh,620px);aspect-ratio:1;will-change:transform,opacity;transform:translate(-50%,-50%)}
+.dish img{width:100%;height:100%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 26px 22px #0008)}
+.dish:not(:first-of-type){opacity:0}
+.dish-shadow{position:absolute;width:76%;height:14%;left:12%;bottom:4%;border-radius:50%;background:#000a;filter:blur(22px);pointer-events:none}
+.floor{position:absolute;width:120%;height:72%;left:-10%;top:34%;transform:rotateX(70deg);pointer-events:none}
+.ring{position:absolute;width:70%;height:100%;left:15%;top:0;border:1px solid #f6c06250;border-radius:50%;box-shadow:0 0 30px #ffe25a10}
+.ring.inner{width:50%;height:66%;left:25%;top:17%;border-color:#f6c06228}
+.details{position:absolute;left:5%;right:5%;bottom:104px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;z-index:7;pointer-events:none}
+.details a{pointer-events:auto}
+.claim{max-width:620px;transition:opacity .25s,transform .25s}
+.claim.out{opacity:0;transform:translateY(8px)}
+.claim .eyebrow{color:var(--yellow)}
+.claim h2{font-size:clamp(40px,4.6vw,74px);font-weight:800;line-height:.96;letter-spacing:-.045em;margin:14px 0 0}
+.claim h2 em{color:var(--yellow);font-weight:600}
+.card{width:290px;transition:opacity .25s}
+.card.out{opacity:0}
+.card p{font-size:13px;line-height:1.6;color:#dcc8ae;margin:0 0 16px}
+.card .button{width:100%}
+.bottom{position:absolute;left:5%;right:5%;bottom:22px;display:flex;justify-content:space-between;align-items:center;gap:24px;z-index:8}
+.cue{display:flex;align-items:center;gap:12px;font-size:9px;letter-spacing:.16em;line-height:1.8;color:#c3ad93;font-weight:600}
+.track{width:16px;height:28px;border:1px solid #8a7058;border-radius:10px;position:relative}
+.track i{position:absolute;width:2px;height:6px;left:6px;top:5px;background:var(--yellow);animation:nudge 1.7s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(8px);opacity:1}}
+.choices{display:flex;align-items:center;gap:4px}
+.choice{display:flex;gap:10px;align-items:center;background:none;border:0;border-bottom:1.5px solid #ffffff22;color:#c3ad93;font-size:10px;font-weight:600;padding:15px 14px}
+.choice span{font-size:13px}
+.choice.active{border-bottom-color:var(--yellow);color:var(--cream)}
+.choice.active span{color:var(--yellow)}
+.arrow{border:1px solid #8a705880;border-radius:50%;width:38px;height:38px;background:#1c0f0780;font-size:17px;margin:0 10px;transition:border-color .2s,background .2s}
+.arrow:hover{border-color:var(--yellow);background:#ffe25a1a}
+.skip-hero{font-size:12px;font-weight:700;color:var(--yellow);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:0;width:100%;height:3px;background:#ffffff14;z-index:10}
+.progress span{display:block;height:100%;background:var(--yellow);transform:scaleX(.3333);transform-origin:left;will-change:transform}
+
+/* Cinta */
+.ticker{background:var(--yellow);color:var(--ink);overflow:hidden;white-space:nowrap;font-weight:800;font-size:15px;letter-spacing:-.01em;padding:15px 0}
+.ticker div{display:inline-flex;gap:28px;padding-right:28px;animation:slide 38s linear infinite}
+.ticker b{color:var(--brown)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Carta */
+.menu{background:var(--cream);color:var(--ink);padding:110px 0 120px}
+.menu-head{padding:0 6%;display:grid;grid-template-columns:1.2fr 1fr;gap:6%;align-items:end;margin-bottom:46px}
+.menu-head .eyebrow{color:var(--brown);grid-column:1/-1;margin-bottom:18px}
+.menu-head h2{font-size:clamp(64px,10vw,150px);font-weight:800;letter-spacing:-.06em;line-height:.85;margin:0}
+.menu-head h2 em{color:var(--brown)}
+.menu-head p{font-size:16px;line-height:1.6;color:#6b4a30;margin:0;max-width:440px}
+.tabs{position:sticky;top:66px;z-index:20;background:#fbf3e2f2;backdrop-filter:blur(10px);border-block:1px solid var(--line);display:flex;gap:6px;overflow-x:auto;padding:12px 6%;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:999px;color:#6b4a30;transition:background .2s,color .2s}
+.tabs a:hover{background:#6c2d0212}
+.tabs a.active{background:var(--brown);color:var(--yellow)}
+.block{padding:84px 6% 0}
+.block-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:8px}
+.block-head h3{font-size:clamp(34px,4.4vw,56px);font-weight:800;letter-spacing:-.045em;line-height:.95;margin:0}
+.block-head h3 em{color:var(--brown)}
+.block-head p{margin:0;font-size:13px;color:#7d5a3c;max-width:340px;text-align:right;line-height:1.5}
+.items{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:64px}
+.items li{display:flex;align-items:baseline;gap:12px;padding:17px 0;border-bottom:1px solid var(--line)}
+.items .n{font-weight:700;font-size:17px;letter-spacing:-.015em}
+.items small{display:block;font-weight:400;font-size:13px;color:#7d5a3c;line-height:1.5;margin-top:4px;letter-spacing:0}
+.items .dots{flex:1;border-bottom:1.5px dotted #6c2d0255;transform:translateY(-4px);min-width:14px}
+.items .p{font-weight:800;font-size:16px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.items .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:var(--ink);border-radius:999px;padding:3px 9px;margin-left:8px;vertical-align:2px}
+.feature{display:grid;grid-template-columns:.9fr 1.1fr;gap:5%;align-items:center;margin-top:26px}
+.feature figure{margin:0;padding:6%;background:radial-gradient(circle closest-side,var(--yellow) 0,var(--honey) 95%,transparent 96%);aspect-ratio:1}
+.feature figure img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 22px 18px #6c2d0240)}
+.flavours{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.flavours li{background:#fff8ea;border:1px solid var(--line);border-radius:18px;padding:20px 20px 18px}
+.flavours span{display:block;font-size:11px;font-weight:700;color:var(--brown);letter-spacing:.14em}
+.flavours b{display:block;font-size:22px;letter-spacing:-.03em;margin:6px 0 4px}
+.flavours p{margin:0;font-size:13px;color:#7d5a3c;line-height:1.45}
+.note{font-size:13px;color:#7d5a3c;margin:22px 0 0}
+
+/* Visítanos */
+.visit{background:var(--brown);color:var(--cream);padding:120px 6%;display:grid;grid-template-columns:1.2fr 1fr;gap:8%;align-items:center;position:relative;overflow:hidden}
+.visit:before{content:'';position:absolute;width:640px;height:640px;right:-320px;top:-200px;border-radius:50%;border:2px solid #ffe25a30}
+.visit .eyebrow{color:var(--yellow)}
+.visit h2{font-size:clamp(52px,7vw,104px);font-weight:800;letter-spacing:-.04em;font-variant-ligatures:no-common-ligatures;line-height:.9;margin:22px 0 0}
+.visit h2 em{color:var(--yellow)}
+.visit-info{position:relative;display:grid;gap:26px}
+.visit-info dl{margin:0;display:grid;gap:22px}
+.visit-info dt{font-size:10px;letter-spacing:.24em;font-weight:700;color:var(--honey);margin-bottom:6px}
+.visit-info dd{margin:0;font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.3}
+.visit-info dd a{border-bottom:1.5px solid #ffe25a80}
+.visit-actions{display:flex;flex-wrap:wrap;gap:12px}
+
+.footer{background:var(--espresso);padding:44px 6%;display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:12px;color:#b49a7e}
+.footer .brand{color:var(--cream)}
+.footer nav{display:flex;gap:22px}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+.reveal.visible,.no-io .reveal{opacity:1;transform:none}
+
+@media(max-width:1100px){
+  .side,.skip-hero{display:none}
+  .claim h2{font-size:clamp(38px,5.6vw,60px)}
+}
+@media(max-width:860px){
+  .header nav{display:none}
+  .menu-head,.visit,.feature{grid-template-columns:1fr}
+  .menu-head{gap:22px}
+  .items{grid-template-columns:1fr}
+  .feature figure{max-width:420px;width:80%;margin:0 auto}
+  .block-head{flex-direction:column;align-items:flex-start;gap:10px}
+  .block-head p{text-align:left}
+  .visit{gap:50px}
+}
+@media(max-width:760px){
+  html{scroll-padding-top:122px}
+  .header,.header.scrolled{height:62px;padding:0 5%}
+  .brand{font-size:17px}.brand img{width:38px;height:38px}
+  .motion .showroom{height:310svh}
+  .pin{min-height:600px}
+  .heading{top:14%}
+  .heading .eyebrow{font-size:8px;letter-spacing:.2em}
+  .heading h1{font-size:33vw;margin-top:16px}
+  .stage{top:23%;height:46%;perspective:800px}
+  .dish{width:min(80vw,46vh)}
+  .floor{top:40%;height:58%;width:160%;left:-30%}
+  .details{bottom:96px;flex-direction:column;align-items:flex-start;gap:16px}
+  .claim h2{font-size:clamp(32px,9.6vw,44px)}
+  .card{width:auto}
+  .card p{display:none}
+  .card .button{width:auto}
+  .bottom{bottom:16px}
+  .cue{display:none}
+  .choices{width:100%;justify-content:space-between}
+  .choice{padding:12px 6px;gap:6px}
+  .arrow{display:none}
+  .menu{padding:80px 0 90px}
+  .tabs{top:62px;padding:10px 5%}
+  .block{padding:64px 5% 0}
+  .flavours{grid-template-columns:1fr}
+  .visit{padding:90px 6%}
+  .footer{flex-direction:column;align-items:flex-start}
+}
+@media(max-height:700px) and (min-width:761px){
+  .heading{top:12%}.heading h1{font-size:20vw}
+  .claim h2{font-size:42px}.card p{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+.still .pin{position:relative}
+.still .stage{cursor:default}
+.still .cue{display:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#carta">Saltar a la carta</a>
+
+<header class="header" id="header">
+  <a class="brand" href="#inicio" aria-label="Jota Café, inicio"><img src="img/logo.png" alt="" width="150" height="150">Jota Café</a>
+  <nav aria-label="Navegación principal"><a href="#pancakes">Pancakes</a><a href="#cafe">Café</a><a href="#tostadas">Tostadas</a><a href="#visitanos">Visítanos</a></nav>
+  <a class="button yellow small" href="#carta">Ver la carta <span aria-hidden="true">↓</span></a>
+</header>
+
+<main>
+<section class="showroom" id="inicio" aria-label="Lo mejor de Jota Café">
+  <div class="pin">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="heading"><p class="eyebrow">Café &amp; Brunch · Paseo Gran Vía 33 · Zaragoza</p><h1>JOTA<span>.</span></h1></div>
+    <div class="side" aria-hidden="true"><span>RECIÉN HECHOS, CADA MAÑANA</span><span>41°38′ N / 0°53′ O · ZARAGOZA</span></div>
+
+    <div class="stage" id="stage" tabindex="0" aria-label="Ruleta de platos. Usa el scroll, las flechas o los botones para elegir.">
+      <div class="floor" aria-hidden="true"><div class="ring"></div><div class="ring inner"></div></div>
+      <div class="dish" data-dish="0"><div class="dish-shadow"></div><img src="img/pancakes.webp" alt="Dos pancakes soufflé con mantequilla y sirope" width="888" height="900" fetchpriority="high" draggable="false"></div>
+      <div class="dish" data-dish="1" aria-hidden="true"><div class="dish-shadow"></div><img src="img/cafe.webp" alt="Capuccino con arte latte en forma de corazón" width="900" height="883" draggable="false"></div>
+      <div class="dish" data-dish="2" aria-hidden="true"><div class="dish-shadow"></div><img src="img/tostada.webp" alt="Tostada de hogaza con queso fresco, fiambre, cherris y pesto" width="894" height="900" draggable="false"></div>
+    </div>
+
+    <div class="details">
+      <div class="claim" id="claim" aria-live="polite"><p class="eyebrow" id="claim-eyebrow">01 / 03 · Pancakes soufflé</p><h2 id="claim-title">Los pancakes más <em>virales</em> de Zaragoza.</h2></div>
+      <div class="card" id="card"><p id="card-text">Altísimos, temblorosos y recién hechos. Seis sabores, del original con mantequilla y arce al de pistacho.</p><a class="button yellow" id="card-link" href="#pancakes">Ver los pancakes <span aria-hidden="true">↓</span></a></div>
+    </div>
+
+    <div class="bottom">
+      <div class="cue"><span class="track"><i></i></span><span>HAZ SCROLL<br>DESCUBRE LA CARTA</span></div>
+      <div class="choices" role="group" aria-label="Elegir plato">
+        <button class="arrow" id="prev" aria-label="Plato anterior">←</button>
+        <button class="choice active" data-choice="0" aria-pressed="true">01 <span>Pancakes</span></button>
+        <button class="choice" data-choice="1" aria-pressed="false">02 <span>Café</span></button>
+        <button class="choice" data-choice="2" aria-pressed="false">03 <span>Tostadas</span></button>
+        <button class="arrow" id="next" aria-label="Plato siguiente">→</button>
+      </div>
+      <a class="skip-hero" href="#carta">Saltar a la carta ↓</a>
+    </div>
+    <div class="progress" aria-hidden="true"><span></span></div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div>
+  <span>PANCAKES SOUFFLÉ RECIÉN HECHOS</span><b>✦</b><span>CAFÉ DE ESPECIALIDAD</span><b>✦</b><span>MATCHA LOVERS</span><b>✦</b><span>TOSTADAS DE HOGAZA Y FOCACCIA</span><b>✦</b><span>PASEO GRAN VÍA 33</span><b>✦</b>
+  <span>PANCAKES SOUFFLÉ RECIÉN HECHOS</span><b>✦</b><span>CAFÉ DE ESPECIALIDAD</span><b>✦</b><span>MATCHA LOVERS</span><b>✦</b><span>TOSTADAS DE HOGAZA Y FOCACCIA</span><b>✦</b><span>PASEO GRAN VÍA 33</span><b>✦</b>
+</div></div>
+
+<section class="menu" id="carta" aria-labelledby="carta-titulo">
+  <div class="menu-head reveal">
+    <p class="eyebrow">La carta · Jota Café</p>
+    <h2 id="carta-titulo">Pide lo que <em>te apetezca.</em></h2>
+    <p>Pancakes soufflé hechos al momento, café de especialidad, una barra entera de matcha y tostadas para compartir (o no).</p>
+  </div>
+
+  <nav class="tabs" id="tabs" aria-label="Secciones de la carta">
+    <a href="#pancakes">Pancakes soufflé</a><a href="#tostadas">Tostadas</a><a href="#cafe">Café</a><a href="#matcha">Matcha</a><a href="#frias">Bebidas frías</a><a href="#refrescos">Zumos y refrescos</a><a href="#extras">Extras</a>
+  </nav>
+
+  <section class="block" id="pancakes" aria-labelledby="h-pancakes">
+    <div class="block-head reveal"><h3 id="h-pancakes">Pancakes <em>soufflé</em></h3><p>Los de la foto. Se hacen al momento, así que dales unos minutos: merece la pena.</p></div>
+    <div class="feature">
+      <figure class="reveal"><img src="img/pancakes.webp" alt="Pancakes soufflé de Jota Café" width="888" height="900" loading="lazy"></figure>
+      <ul class="flavours">
+        <li class="reveal"><span>01</span><b>Original</b><p>Mantequilla y sirope de arce</p></li>
+        <li class="reveal"><span>02</span><b>Redberries</b><p>Frutos rojos y ricotta</p></li>
+        <li class="reveal"><span>03</span><b>Lotus</b><p>Crema, galleta y helado de vainilla</p></li>
+        <li class="reveal"><span>04</span><b>Pistacho</b><p>Crema, chocolate blanco y pistacho</p></li>
+        <li class="reveal"><span>05</span><b>Matcha</b><p>Crema de matcha y fresas</p></li>
+        <li class="reveal"><span>06</span><b>Tiramisú</b><p>Crema y helado de vainilla</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="tostadas" aria-labelledby="h-tostadas">
+    <div class="block-head reveal"><h3 id="h-tostadas">Tostadas</h3><p>Media o entera. Pan de hogaza o focaccia, con producto de verdad encima.</p></div>
+    <ul class="items">
+      <li><span class="n">Siciliana <span class="tag">Media · Entera</span><small>Focaccia con crema de trufa, burrata, mortadela de Bolonia, cherris y pesto</small></span><span class="dots"></span><span class="p">5,00 €</span></li>
+      <li><span class="n">Noruega <span class="tag">Media · Entera</span><small>Pan de hogaza, aguacate, rulo de cabra, salmón ahumado y nueces</small></span><span class="dots"></span><span class="p">5,00 €</span></li>
+      <li><span class="n">5 Quesos <span class="tag">Media · Entera</span><small>Mozzarella, parmesano, Old Amsterdam, cabra añejo y gouda. ¿Con miel?</small></span><span class="dots"></span><span class="p">5,00 €</span></li>
+    </ul>
+  </section>
+
+  <section class="block" id="cafe" aria-labelledby="h-cafe">
+    <div class="block-head reveal"><h3 id="h-cafe">Café &amp; bebidas <em>calientes</em></h3><p>Pásate a especialidad en cualquier café por +0,20 €.</p></div>
+    <ul class="items">
+      <li><span class="n">Solo / Solo doble</span><span class="dots"></span><span class="p">1,50 €</span></li>
+      <li><span class="n">Cortado</span><span class="dots"></span><span class="p">1,60 €</span></li>
+      <li><span class="n">Americano</span><span class="dots"></span><span class="p">1,60 €</span></li>
+      <li><span class="n">Latte / Latte XL</span><span class="dots"></span><span class="p">1,70 €</span></li>
+      <li><span class="n">Flat white</span><span class="dots"></span><span class="p">2,50 €</span></li>
+      <li><span class="n">Capuccino / Capuccino XL</span><span class="dots"></span><span class="p">2,50 €</span></li>
+      <li><span class="n">Chai latte</span><span class="dots"></span><span class="p">3,00 €</span></li>
+      <li><span class="n">Golden latte</span><span class="dots"></span><span class="p">3,50 €</span></li>
+      <li><span class="n">Dirty chai latte</span><span class="dots"></span><span class="p">3,60 €</span></li>
+      <li><span class="n">Cola Cao / Batido de chocolate</span><span class="dots"></span><span class="p">2,10 €</span></li>
+      <li><span class="n">Tés e infusiones</span><span class="dots"></span><span class="p">2,20 €</span></li>
+    </ul>
+  </section>
+
+  <section class="block" id="matcha" aria-labelledby="h-matcha">
+    <div class="block-head reveal"><h3 id="h-matcha">Matcha <em>lovers</em></h3><p>Cualquiera, también en versión iced.</p></div>
+    <ul class="items">
+      <li><span class="n">Matcha latte / Matcha XL</span><span class="dots"></span><span class="p">3,00 €</span></li>
+      <li><span class="n">Strawberry matcha latte</span><span class="dots"></span><span class="p">3,50 €</span></li>
+      <li><span class="n">Vainilla matcha latte</span><span class="dots"></span><span class="p">3,50 €</span></li>
+      <li><span class="n">Redberries matcha latte</span><span class="dots"></span><span class="p">3,50 €</span></li>
+      <li><span class="n">Affogato matcha</span><span class="dots"></span><span class="p">4,50 €</span></li>
+      <li><span class="n">Haz tu bebida iced</span><span class="dots"></span><span class="p">+0,50 €</span></li>
+      <li><span class="n">Añade helado de matcha</span><span class="dots"></span><span class="p">+1,50 €</span></li>
+    </ul>
+  </section>
+
+  <section class="block" id="frias" aria-labelledby="h-frias">
+    <div class="block-head reveal"><h3 id="h-frias">Bebidas <em>frías</em></h3></div>
+    <ul class="items">
+      <li><span class="n">Iced latte</span><span class="dots"></span><span class="p">3,00 €</span></li>
+      <li><span class="n">Cold brew</span><span class="dots"></span><span class="p">3,00 €</span></li>
+      <li><span class="n">Iced chai latte</span><span class="dots"></span><span class="p">3,50 €</span></li>
+      <li><span class="n">Affogato</span><span class="dots"></span><span class="p">4,00 €</span></li>
+    </ul>
+  </section>
+
+  <section class="block" id="refrescos" aria-labelledby="h-refrescos">
+    <div class="block-head reveal"><h3 id="h-refrescos">Zumos, refrescos <em>y caña</em></h3></div>
+    <ul class="items">
+      <li><span class="n">Refrescos</span><span class="dots"></span><span class="p">2,60 €</span></li>
+      <li><span class="n">Zumo natural / Zumos</span><span class="dots"></span><span class="p">2,50 €</span></li>
+      <li><span class="n">Caña / Copa de cerveza</span><span class="dots"></span><span class="p">2,00 €</span></li>
+    </ul>
+  </section>
+
+  <section class="block" id="extras" aria-labelledby="h-extras">
+    <div class="block-head reveal"><h3 id="h-extras">Extras</h3></div>
+    <ul class="items">
+      <li><span class="n">Café de especialidad<small>Haz cualquier café con grano de especialidad</small></span><span class="dots"></span><span class="p">+0,20 €</span></li>
+      <li><span class="n">Extra leche vegetal</span><span class="dots"></span><span class="p">+0,20 €</span></li>
+      <li><span class="n">Extra hielo</span><span class="dots"></span><span class="p">+0,10 €</span></li>
+    </ul>
+    <p class="note">Si tienes alguna alergia o intolerancia, pregúntanos antes de pedir.</p>
+  </section>
+</section>
+
+<section class="visit" id="visitanos" aria-labelledby="visit-titulo">
+  <div class="reveal">
+    <p class="eyebrow">Visítanos</p>
+    <h2 id="visit-titulo">Tu soufflé te <em>está esperando.</em></h2>
+  </div>
+  <div class="visit-info reveal">
+    <dl>
+      <div><dt>DIRECCIÓN</dt><dd>Paseo Gran Vía 33<br>Zaragoza</dd></div>
+      <div><dt>INSTAGRAM</dt><dd><a href="https://www.instagram.com/jotacafe.zgz/" target="_blank" rel="noopener">@jotacafe.zgz</a></dd></div>
+    </dl>
+    <div class="visit-actions">
+      <a class="button yellow" href="https://www.google.com/maps/search/?api=1&amp;query=JOTA%20CAFE%20Paseo%20Gran%20V%C3%ADa%2033%20Zaragoza" target="_blank" rel="noopener">Cómo llegar y horario <span aria-hidden="true">↗</span></a>
+      <a class="button ghost" href="https://linktr.ee/jotacafe.zaragoza" target="_blank" rel="noopener">Todos los enlaces <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <a class="brand" href="#inicio" aria-label="Jota Café, volver arriba"><img src="img/logo.png" alt="" width="150" height="150" loading="lazy">Jota Café</a>
+  <span>© 2026 Jota Café · Café &amp; Brunch · Paseo Gran Vía 33, Zaragoza</span>
+  <nav aria-label="Redes"><a href="https://www.instagram.com/jotacafe.zgz/" target="_blank" rel="noopener">Instagram ↗</a><a href="#carta">Carta ↑</a></nav>
+</footer>
+
+<script>
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const header=document.querySelector('#header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30),{passive:true});
+
+// Aparición suave de bloques
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));}else document.body.classList.add('no-io');
+
+// Pestañas de la carta: marcan la sección que estás viendo
+const tabs=[...document.querySelectorAll('#tabs a')];
+const blocks=tabs.map(a=>document.querySelector(a.getAttribute('href')));
+let activeTab=-1;
+function updateTabs(){const line=innerHeight*.35;let current=-1;blocks.forEach((b,i)=>{if(b.getBoundingClientRect().top<line)current=i;});if(current===activeTab)return;activeTab=current;tabs.forEach((t,i)=>t.classList.toggle('active',i===current));if(current>=0){const t=tabs[current],bar=t.parentElement;bar.scrollTo({left:t.offsetLeft-bar.clientWidth/2+t.offsetWidth/2,behavior:'smooth'});}}
+
+// Hero: los tres platos giran en órbita con el scroll nativo (sin secuestrar la rueda)
+const showroom=document.querySelector('.showroom'),pin=document.querySelector('.pin'),stage=document.querySelector('#stage');
+const dishes=[...document.querySelectorAll('.dish')],choices=[...document.querySelectorAll('[data-choice]')];
+const claim=document.querySelector('#claim'),card=document.querySelector('#card');
+const slides=[
+ {eyebrow:'01 / 03 · Pancakes soufflé',title:'Los pancakes más <em>virales</em> de Zaragoza.',text:'Altísimos, temblorosos y recién hechos. Seis sabores, del original con mantequilla y arce al de pistacho.',link:'#pancakes',cta:'Ver los pancakes'},
+ {eyebrow:'02 / 03 · Café de especialidad',title:'El mejor café de <em>especialidad.</em>',text:'Del solo al flat white, con grano de especialidad, y una barra entera para los matcha lovers.',link:'#cafe',cta:'Ver los cafés'},
+ {eyebrow:'03 / 03 · Tostadas',title:'Las mejores <em>tostadas.</em>',text:'Hogaza y focaccia, media o entera: Siciliana con burrata, Noruega con salmón y 5 quesos.',link:'#tostadas',cta:'Ver las tostadas'}
+];
+const last=slides.length-1,clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+let current=0,phase=0,target=0,frame=0,lastT=0,startY=0,range=1,swapTimer=0;
+let pointer=null,dragging=false,dragPhase=0,dragDx=0;
+const still=()=>reduced.matches;
+
+function setMode(){document.body.classList.toggle('motion',!still());document.body.classList.toggle('still',still());measure();if(still()){phase=target=current;render();}else readScroll();}
+reduced.addEventListener('change',setMode);
+function measure(){startY=showroom.getBoundingClientRect().top+scrollY;range=Math.max(0,showroom.offsetHeight-pin.offsetHeight);}
+
+function show(i){
+  if(i===current)return;current=i;const s=slides[i];
+  choices.forEach((b,k)=>{b.classList.toggle('active',k===i);b.setAttribute('aria-pressed',String(k===i));});
+  dishes.forEach((d,k)=>d.setAttribute('aria-hidden',String(k!==i)));
+  claim.classList.add('out');card.classList.add('out');clearTimeout(swapTimer);
+  swapTimer=setTimeout(()=>{document.querySelector('#claim-eyebrow').textContent=s.eyebrow;document.querySelector('#claim-title').innerHTML=s.title;document.querySelector('#card-text').textContent=s.text;const l=document.querySelector('#card-link');l.href=s.link;l.firstChild.textContent=s.cta+' ';claim.classList.remove('out');card.classList.remove('out');},still()?0:220);
+}
+
+function render(){
+  const mobile=innerWidth<=760,radius=innerWidth*(mobile?.62:.36),depth=mobile?120:220;
+  dishes.forEach((d,i)=>{
+    const angle=(i-phase)*Math.PI*2/3,front=(Math.cos(angle)+1)/2;
+    let x=Math.sin(angle)*radius,y=(1-front)*(mobile?-46:-80),z=(front-1)*depth,scale=.42+.58*front,turn=-Math.sin(angle)*18,spin=Math.sin(angle)*8,opacity=1;
+    if(still()){x=y=z=turn=spin=0;scale=1;opacity=i===current?1:0;}
+    d.style.transform=`translate(-50%,-50%) translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,${z.toFixed(1)}px) rotateY(${turn.toFixed(2)}deg) rotateZ(${spin.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
+    d.style.opacity=opacity;d.style.zIndex=String(Math.round(front*20)+2);d.style.filter=`brightness(${(.45+.55*front).toFixed(2)})`;
+  });
+  document.querySelector('.heading').style.transform=still()?'none':`translateY(${(-Math.sin(phase*Math.PI/2)*20).toFixed(1)}px)`;
+  document.querySelector('.progress span').style.transform=`scaleX(${((phase+1)/3).toFixed(4)})`;
+  if(!still())show(clamp(Math.round(phase),0,last));
+}
+function tick(t){const dt=Math.min(40,t-(lastT||t));lastT=t;const delta=target-phase;if(Math.abs(delta)<.0003){phase=target;render();frame=0;lastT=0;return;}phase+=delta*(1-Math.exp(-Math.max(dt,16)/95));render();frame=requestAnimationFrame(tick);}
+function animate(){if(still()){phase=target;render();return;}if(!frame)frame=requestAnimationFrame(tick);}
+function readScroll(){if(dragging||still()||range<=0)return;const p=clamp((scrollY-startY)/range,0,1);target=clamp(p*2.4-.2,0,last);animate();}
+function select(i){i=(i+slides.length)%slides.length;if(still()||range<=0){show(i);phase=target=i;render();return;}scrollTo({top:startY+range*(i+.2)/2.4,behavior:'smooth'});}
+
+choices.forEach((b,i)=>b.addEventListener('click',()=>select(i)));
+document.querySelector('#prev').addEventListener('click',()=>select(current-1));
+document.querySelector('#next').addEventListener('click',()=>select(current+1));
+stage.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();select(current+(e.key==='ArrowLeft'?-1:1));}});
+stage.addEventListener('pointerdown',e=>{if(e.button!==0)return;pointer={x:e.clientX,y:e.clientY};dragPhase=phase;dragDx=0;});
+stage.addEventListener('pointermove',e=>{if(!pointer)return;const dx=e.clientX-pointer.x,dy=e.clientY-pointer.y;if(!dragging){if(Math.abs(dy)>12&&Math.abs(dy)>Math.abs(dx)){pointer=null;return;}if(Math.abs(dx)>12){dragging=true;stage.setPointerCapture(e.pointerId);}else return;}dragDx=dx;target=clamp(dragPhase-dx/(innerWidth*.45),0,last);animate();});
+function stopDrag(){if(dragging){dragging=false;select(Math.abs(dragDx)>45?clamp(Math.round(dragPhase)+(dragDx<0?1:-1),0,last):Math.round(target));}pointer=null;}
+stage.addEventListener('pointerup',stopDrag);stage.addEventListener('pointercancel',()=>{dragging=false;pointer=null;readScroll();});
+
+let ticking=false;
+addEventListener('scroll',()=>{readScroll();if(!ticking){ticking=true;requestAnimationFrame(()=>{updateTabs();ticking=false;});}},{passive:true});
+addEventListener('resize',()=>{measure();readScroll();render();});
+addEventListener('load',()=>{measure();readScroll();});
+setMode();render();updateTabs();
+</script>
+</body>
+</html>
