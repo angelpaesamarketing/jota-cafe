@@ -1,22 +1,16 @@
 # Jota Café — landing con carta digital
 
 ```
-index.html   la página (hero con los 3 platos girando + carta + visítanos)
-img/         pancakes, café, tostada (webp recortados) y logo
+public/index.html   la página (hero con los 3 platos girando + carta + visítanos)
+public/img/         pancakes, café, tostada (webp recortados) y logo
+public/_headers     caché de 30 días para las imágenes
+wrangler.jsonc      le dice a Cloudflare que publique solo public/
 ```
 
-## Publicarla en Cloudflare Pages
+## Publicación
 
-Cloudflare → **Workers & Pages → Create → Pages → Connect to Git** → repo `jota-caf-`, y:
-
-| Campo | Valor |
-|---|---|
-| Production branch | `main` |
-| Framework preset | None |
-| Build command | *(vacío)* |
-| Build output directory | *(vacío)* |
-
-Save and Deploy. Cada push a `main` se publica solo. `_headers` deja las imágenes en caché 30 días.
+Está conectada a Cloudflare Workers (proyecto `jota-cafe`, deploy command `npx wrangler deploy`).
+Cada push a `main` se publica solo. Solo sale a internet lo que hay en `public/`: este README no.
 
 Para el QR de las mesas, apunta a `…/#carta`: abre directamente en la carta, sin pasar por el hero.
 

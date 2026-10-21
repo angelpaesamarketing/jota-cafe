@@ -1,0 +1,8 @@
+{
+  // Web estática: Cloudflare sirve solo lo que hay en public/ (el README no se publica)
+  "name": "jota-cafe",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public"
+  }
+}
