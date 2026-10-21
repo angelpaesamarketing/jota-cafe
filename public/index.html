@@ -506,14 +506,14 @@ function createScene(root,layout){
     root.style.setProperty('--s',s+'px');
     // 1) camina con el plato  2) lo posa en la mesa  3) cambia de pose y da un paso atrás
     const walk=ease(seg(p,0,.7)),place=ease(seg(p,.72,.84)),swap=seg(p,.84,.9),step=ease(seg(p,.84,.95));
-    const startX=-1180*k,stopX=girlX-800*k,wx=lerp(startX,stopX,walk)-back*k*step;
+    const startX=-1220*k,stopX=girlX-830*k,wx=lerp(startX,stopX,walk)-back*k*step;
     const moving=(walk>0&&walk<1)||(step>0&&step<1),phase=(wx-startX)/(170*k)*Math.PI;
     const bob=moving?-Math.abs(Math.sin(phase))*14*k:0,lean=moving?(walk<1?2.2:-1.5)+Math.sin(phase)*1.2:0;
     waiter.style.transform=T(wx,top+bob,lean);
     waiterAlt.style.opacity=swap;waiterBase.style.opacity=1-swap;
     // Plato: en la mano con un leve vaivén; después un arco hasta la mesa (donde está en la ilustración de la clienta)
     const pw=367*k,ph=pw*297/640;
-    const handCx=lerp(startX,stopX,walk)+990*k,handB=top+806*k+bob+(moving?Math.sin(phase*2)*2*k:0);
+    const handCx=lerp(startX,stopX,walk)+1025*k,handB=top+788*k+bob+(moving?Math.sin(phase*2)*2*k:0);
     const tableCx=girlX+488*k,tableB=top+820*k;
     const cx=lerp(handCx,tableCx,place),b=lerp(handB,tableB,place)-Math.sin(place*Math.PI)*70*k;
     plate.style.transform=T(cx-pw/2,b-ph,place>0&&place<1?Math.sin(place*Math.PI)*-4:(moving?Math.sin(phase)*1.5:0));
