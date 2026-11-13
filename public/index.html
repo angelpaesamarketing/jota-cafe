@@ -277,7 +277,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
     </div>
 
     <div class="details">
-      <div class="claim" id="claim" aria-live="polite"><p class="eyebrow" id="claim-eyebrow">01 / 03 · Pancakes soufflé</p><h2 id="claim-title">Los pancakes más <em>virales</em> de Zaragoza.</h2></div>
+      <div class="claim" id="claim" aria-live="polite"><h2 id="claim-title">Los pancakes más <em>virales</em> de Zaragoza.</h2></div>
       <div class="card" id="card"><p id="card-text">Altísimos, temblorosos y recién hechos. Seis sabores, del original con mantequilla y arce al de pistacho.</p><a class="button yellow" id="card-link" href="#pancakes">Ver los pancakes <span aria-hidden="true">↓</span></a></div>
     </div>
 
@@ -443,9 +443,9 @@ const showroom=document.querySelector('.showroom'),pin=document.querySelector('.
 const dishes=[...document.querySelectorAll('.dish')],choices=[...document.querySelectorAll('[data-choice]')];
 const claim=document.querySelector('#claim'),card=document.querySelector('#card');
 const slides=[
- {eyebrow:'01 / 03 · Pancakes soufflé',title:'Los pancakes más <em>virales</em> de Zaragoza.',text:'Altísimos, temblorosos y recién hechos. Seis sabores, del original con mantequilla y arce al de pistacho.',link:'#pancakes',cta:'Ver los pancakes'},
- {eyebrow:'02 / 03 · Café de especialidad',title:'El mejor café de <em>especialidad.</em>',text:'Del solo al flat white, con grano de especialidad, y una barra entera para los matcha lovers.',link:'#cafe',cta:'Ver los cafés'},
- {eyebrow:'03 / 03 · Tostadas',title:'Las mejores <em>tostadas.</em>',text:'Hogaza y focaccia, media o entera: Siciliana con burrata, Noruega con salmón y 5 quesos.',link:'#tostadas',cta:'Ver las tostadas'}
+ {title:'Los pancakes más <em>virales</em> de Zaragoza.',text:'Altísimos, temblorosos y recién hechos. Seis sabores, del original con mantequilla y arce al de pistacho.',link:'#pancakes',cta:'Ver los pancakes'},
+ {title:'El mejor café de <em>especialidad.</em>',text:'Del solo al flat white, con grano de especialidad, y una barra entera para los matcha lovers.',link:'#cafe',cta:'Ver los cafés'},
+ {title:'Las mejores <em>tostadas.</em>',text:'Hogaza y focaccia, media o entera: Siciliana con burrata, Noruega con salmón y 5 quesos.',link:'#tostadas',cta:'Ver las tostadas'}
 ];
 const last=slides.length-1,clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 let current=0,phase=0,target=0,frame=0,lastT=0,startY=0,range=1,swapTimer=0;
@@ -463,7 +463,7 @@ function show(i){
   choices.forEach((b,k)=>{b.classList.toggle('active',k===i);b.setAttribute('aria-pressed',String(k===i));});
   dishes.forEach((d,k)=>d.setAttribute('aria-hidden',String(k!==i)));
   claim.classList.add('out');card.classList.add('out');clearTimeout(swapTimer);
-  swapTimer=setTimeout(()=>{document.querySelector('#claim-eyebrow').textContent=s.eyebrow;document.querySelector('#claim-title').innerHTML=s.title;document.querySelector('#card-text').textContent=s.text;const l=document.querySelector('#card-link');l.href=s.link;l.firstChild.textContent=s.cta+' ';claim.classList.remove('out');card.classList.remove('out');},still()?0:220);
+  swapTimer=setTimeout(()=>{document.querySelector('#claim-title').innerHTML=s.title;document.querySelector('#card-text').textContent=s.text;const l=document.querySelector('#card-link');l.href=s.link;l.firstChild.textContent=s.cta+' ';claim.classList.remove('out');card.classList.remove('out');},still()?0:220);
 }
 
 function render(){
