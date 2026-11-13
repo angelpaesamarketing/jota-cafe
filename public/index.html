@@ -247,6 +247,8 @@ em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.0
   .reveal{opacity:1;transform:none}
 }
 .still .pin{position:relative}
+.motion.hero-manual .showroom{height:100svh}
+.hero-manual .pin{position:relative}
 .still .stage{cursor:default}
 .still .cue{display:none}
 </style>
@@ -449,10 +451,12 @@ const last=slides.length-1,clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 let current=0,phase=0,target=0,frame=0,lastT=0,startY=0,range=1,swapTimer=0;
 let pointer=null,dragging=false,dragPhase=0,dragDx=0;
 const still=()=>reduced.matches;
+// En móvil el hero no gira con el scroll: solo con los botones o deslizando el dedo
+const manualHero=()=>innerWidth<=760;
 
 function setMode(){document.body.classList.toggle('motion',!still());document.body.classList.toggle('still',still());measure();if(typeof renderScene==='function'){measureStrip();renderScene();}if(still()){phase=target=current;render();}else readScroll();}
 reduced.addEventListener('change',setMode);
-function measure(){startY=showroom.getBoundingClientRect().top+scrollY;range=Math.max(0,showroom.offsetHeight-pin.offsetHeight);}
+function measure(){document.body.classList.toggle('hero-manual',manualHero());startY=showroom.getBoundingClientRect().top+scrollY;range=Math.max(0,showroom.offsetHeight-pin.offsetHeight);}
 
 function show(i){
   if(i===current)return;current=i;const s=slides[i];
@@ -477,8 +481,8 @@ function render(){
 }
 function tick(t){const dt=Math.min(40,t-(lastT||t));lastT=t;const delta=target-phase;if(Math.abs(delta)<.0003){phase=target;render();frame=0;lastT=0;return;}phase+=delta*(1-Math.exp(-Math.max(dt,16)/95));render();frame=requestAnimationFrame(tick);}
 function animate(){if(still()){phase=target;render();return;}if(!frame)frame=requestAnimationFrame(tick);}
-function readScroll(){if(dragging||still()||range<=0)return;const p=clamp((scrollY-startY)/range,0,1);target=clamp(p*2.4-.2,0,last);animate();}
-function select(i){i=(i+slides.length)%slides.length;if(still()||range<=0){show(i);phase=target=i;render();return;}scrollTo({top:startY+range*(i+.2)/2.4,behavior:'smooth'});}
+function readScroll(){if(dragging||still()||manualHero()||range<=0)return;const p=clamp((scrollY-startY)/range,0,1);target=clamp(p*2.4-.2,0,last);animate();}
+function select(i){i=(i+slides.length)%slides.length;if(manualHero()&&!still()){target=i;animate();return;}if(still()||range<=0){show(i);phase=target=i;render();return;}scrollTo({top:startY+range*(i+.2)/2.4,behavior:'smooth'});}
 
 choices.forEach((b,i)=>b.addEventListener('click',()=>select(i)));
 document.querySelector('#prev').addEventListener('click',()=>select(current-1));
@@ -487,7 +491,7 @@ stage.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight
 stage.addEventListener('pointerdown',e=>{if(e.button!==0)return;pointer={x:e.clientX,y:e.clientY};dragPhase=phase;dragDx=0;});
 stage.addEventListener('pointermove',e=>{if(!pointer)return;const dx=e.clientX-pointer.x,dy=e.clientY-pointer.y;if(!dragging){if(Math.abs(dy)>12&&Math.abs(dy)>Math.abs(dx)){pointer=null;return;}if(Math.abs(dx)>12){dragging=true;stage.setPointerCapture(e.pointerId);}else return;}dragDx=dx;target=clamp(dragPhase-dx/(innerWidth*.45),0,last);animate();});
 function stopDrag(){if(dragging){dragging=false;select(Math.abs(dragDx)>45?clamp(Math.round(dragPhase)+(dragDx<0?1:-1),0,last):Math.round(target));}pointer=null;}
-stage.addEventListener('pointerup',stopDrag);stage.addEventListener('pointercancel',()=>{dragging=false;pointer=null;readScroll();});
+stage.addEventListener('pointerup',stopDrag);stage.addEventListener('pointercancel',()=>{dragging=false;pointer=null;if(manualHero())select(Math.round(target));else readScroll();});
 
 
 // El encargado cruza con las tortitas, las deja en la mesa y la clienta se emociona.
@@ -537,7 +541,7 @@ const visitScene=createScene(document.querySelector('#scene'),(W,H)=>{const narr
 const strip=document.querySelector('#strip'),menuEl=document.querySelector('#carta');
 const stripScene=createScene(strip.querySelector('.scene'),(W,H)=>{const s=H,k=s/ART;return {s,top:0,girlX:W-1230*k-Math.min(W*.03,40),back:60};});
 let stripStart=0,stripEnd=1;
-function measureStrip(){const y=scrollY;stripStart=showroom.getBoundingClientRect().bottom+y-innerHeight;stripEnd=menuEl.getBoundingClientRect().bottom+y-innerHeight;}
+function measureStrip(){const y=scrollY;stripStart=showroom.getBoundingClientRect().bottom+y-innerHeight*(manualHero()?.3:1);stripEnd=menuEl.getBoundingClientRect().bottom+y-innerHeight;}
 let sceneFrame=0;
 function renderScene(){
   sceneFrame=0;
